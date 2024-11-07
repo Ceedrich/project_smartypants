@@ -1,5 +1,6 @@
 use super::ChessBoard;
 use ndarray::Array2;
+use std::ops::Not;
 
 #[allow(unused)]
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -16,6 +17,15 @@ pub enum ChessPiece {
 pub enum Color {
     Black,
     White,
+}
+impl Not for Color {
+    type Output = Self;
+    fn not(self) -> Self::Output {
+        match self {
+            Self::Black => Self::White,
+            Self::White => Self::Black,
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -98,6 +108,12 @@ impl BoardPosition {
     }
     pub fn get_idx(&self) -> [usize; 2] {
         [self.y.into(), self.x.into()]
+    }
+    pub fn from_idx(row: usize, col: usize) -> Self {
+        Self {
+            x: col as u8,
+            y: row as u8,
+        }
     }
 }
 

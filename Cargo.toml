@@ -7,5 +7,8 @@ edition = "2021"
 
 [dependencies]
 ndarray = "0.16.1"
+rand = "0.8.5"
+rand_distr = "0.4.3"
+rayon = "1.10.0"
 serde = "1.0.214"
 serde_json = "1.0.132"

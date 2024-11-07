@@ -3,13 +3,21 @@ mod pieces;
 use ndarray::Array2;
 pub use pieces::{BoardPosition, ChessPiece, Color, Piece};
 
+#[derive(Clone)]
 pub struct ChessBoard {
-    fields: Array2<Option<(ChessPiece, Color)>>,
+    pub fields: Array2<Option<(ChessPiece, Color)>>,
 }
 
 impl ChessBoard {
     pub fn get_piece_at_position(&self, position: &BoardPosition) -> Option<(ChessPiece, Color)> {
         self.fields[position.get_idx()]
+    }
+    pub fn get_all_pieces_and_positions(&self) -> Vec<(ChessPiece, Color, BoardPosition)> {
+        self.fields
+            .indexed_iter()
+            .map(|((row, col), opt)| (opt, BoardPosition::from_idx(row, col)))
+            .filter_map(|(opt, pos)| opt.map(|(piece, color)| (piece, color, pos)))
+            .collect()
     }
     pub fn new() -> Self {
         let empty_field: Option<(ChessPiece, Color)> = None;
