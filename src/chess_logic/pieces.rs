@@ -230,7 +230,7 @@ impl Piece for ChessPiece {
                     }
                     if let Some(forward_right) = position.diag_fr(&color, 1) {
                         if board
-                            .get_piece_at_position(&position)
+                            .get_piece_at_position(&forward_right)
                             .is_some_and(|(_, other_color)| other_color != color)
                         {
                             // we can capture diagonal right
@@ -239,7 +239,7 @@ impl Piece for ChessPiece {
                     }
                     if let Some(forward_left) = position.diag_fl(&color, 1) {
                         if board
-                            .get_piece_at_position(&position)
+                            .get_piece_at_position(&forward_left)
                             .is_some_and(|(_, other_color)| other_color != color)
                         {
                             // we can capture diagonal left
