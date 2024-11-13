@@ -214,18 +214,19 @@ impl Piece for ChessPiece {
         if let Some((piece, color)) = board.get_piece_at_position(&position) {
             match piece {
                 ChessPiece::Pawn => {
-                    // todo: en passant
+                    // todo: en passant, promote
                     if let Some(forward) = position.forward(&color, 1) {
                         if board.get_piece_at_position(&forward).is_none() {
                             // we can move forward, it is empty
                             moves[forward.get_idx()] = true;
-                        }
-                    }
-                    if piece.get_starting_layout()[position.get_idx()].is_some() {
-                        // the piece is still at its starting position
-                        if let Some(two_forward) = position.forward(&color, 2) {
-                            // we can move two forward
-                            moves[two_forward.get_idx()] = true;
+
+                            if piece.get_starting_layout()[position.get_idx()].is_some() {
+                                // the piece is still at its starting position
+                                if let Some(two_forward) = position.forward(&color, 2) {
+                                    // we can move two forward
+                                    moves[two_forward.get_idx()] = true;
+                                }
+                            }
                         }
                     }
                     if let Some(forward_right) = position.diag_fr(&color, 1) {
