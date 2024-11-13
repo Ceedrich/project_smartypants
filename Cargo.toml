@@ -3,8 +3,6 @@ name = "project_smartypants"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 ndarray = "0.16.1"
 rand = "0.8.5"
@@ -12,3 +10,4 @@ rand_distr = "0.4.3"
 rayon = "1.10.0"
 serde = "1.0.214"
 serde_json = "1.0.132"
+fltk = { version = "^1.4", features = ["fltk-bundled"] }
