@@ -69,7 +69,6 @@ impl GameWindow {
 
             let game_state = game_state.clone();
             but.set_callback(move |_but| {
-                println!("running callback on {:?}", (row, col));
                 if let Ok(mut game_state) = game_state.write() {
                     let clicked_pos = BoardPosition::from_idx(row as usize, col as usize);
                     if game_state.position_from.is_some_and(|from| {
